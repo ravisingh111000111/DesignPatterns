@@ -9,7 +9,7 @@ namespace DesignPatterns
     internal sealed class Singleton
     {
         private static Singleton Instance = null;
-        private static int Count { get; set; }
+        private static int Count=0;
         public static Singleton GetSingleton
         {
             get
