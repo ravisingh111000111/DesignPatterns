@@ -9,18 +9,27 @@ namespace DesignPatterns
     internal sealed class Singleton
     {
         private static Singleton Instance = null;
-        private static int Count=0;
+        private static int Count = 0;
+        private static readonly object obj = new object();
+
         public static Singleton GetSingleton
         {
             get
             {
-                if (Instance == null)
+                lock (obj)
                 {
-                    Instance = new Singleton();
-                    return Instance;
+                    if (Instance == null)
+                    {
+
+                        Instance = new Singleton();
+                        return Instance;
+
+
+                    }
+                    else
+                        return Instance;
                 }
-                else
-                    return Instance;
+                
             }
         }
         private Singleton()
